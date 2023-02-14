@@ -1,0 +1,106 @@
+//5-1. 다음은 배열을 선언하거나 초기화한 것이다. 잘못된 것을 고르고 그 이유를 설명하세요.
+int[] arr[];
+int[] arr = {1,2,3,};
+int[] arr = new int[5];
+int[] arr = new int[5]{1,2,3,4,5};
+int arr[5];
+int[] arr[] = new int[3][];
+
+답
+
+
+
+
+
+//5-2. 다음과 같은 배열이 있을 때, arr[3].length의 값은?
+int[][]arr ={
+    {5,5,5,5,5},
+    {10,10,10},
+    {20,20,20,20},
+    {30,30}
+};
+답 2
+
+
+
+
+
+//5-3. 배열 arr에 담긴 모든 값을 더하는 프로그램을 완성하세요.
+class Exercise5_3{
+    public static void main(String[] args){
+        int[] arr = {10, 20, 30, 40, 50};
+        int sum = 0;
+
+        for (int i=0; i<arr.length; i++){
+            sum += arr[i];
+        }
+        System.out.println("sum="+sum);
+    }
+}//예상 결과 : sum=150
+
+
+
+
+
+//5-4. 2차원 배열 arr에 담긴 모든 총합과 평균을 구하는 프로그램을 완성하세요.
+class Exercise5_4 {
+    public static void main(String[] args) {
+        int[][] arr = {
+                { 5, 5, 5, 5, 5 },
+                { 10, 10, 10, 10, 10 },
+                { 20, 20, 20, 20, 20 },
+                { 30, 30, 30, 30, 30 }
+        };
+
+        int total = 0;
+        float average = 0;
+
+        for(int i=0; i<arr.length; i++){
+            for(int j=0; j<arr[i].length; j++){
+                total += arr[i][j];
+            }
+        }
+
+        average = (float)total / 20;
+        average = (float)total / (arr.length * arr[0].length);
+        //20을 이렇게 계산 가능..
+
+        System.out.println("total=" + total);
+        System.out.println("average=" + average);
+    } // end of main
+} // end of class
+
+
+
+//5-6. 단어의 글자위치를 섞어서 보여주고 원래의 단어를 맞추는 예제이다. 
+//실행결과와 같이 동작하도록 빈 칸을 채우세요.
+import java.util.Scanner;
+
+class Exercise5_13 {
+    public static void main(String args[]) {
+        String[] words = { "television", "computer", "mouse", "phone" };
+
+        Scanner scanner = new Scanner(System.in);
+
+        for (int i = 0; i < words.length; i++) {
+            char[] question = words[i].toCharArray(); // String을 char[]로 변환
+
+            for(int j=0; j<20; j++){
+                int num = (int)(Math.random()*(question.length));
+                char tmp;
+                tmp = question[0];
+                question[0] = question[num];
+                question[num] = tmp;
+            }
+
+            System.out.printf("Q%d. %s의 정답을 입력하세요 .>", i + 1, new String(question));
+            String answer = scanner.nextLine();
+
+            // trim()으로 answer의 좌우 공백을 제거한 후, equals로 word[i]와 비교
+            if (words[i].equals(answer.trim()))
+                System.out.printf("맞았습니다.%n%n");
+            else
+                System.out.printf("틀렸습니다.%n%n");
+        }
+    } //end of main
+}//end of class
